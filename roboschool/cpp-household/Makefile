@@ -15,13 +15,13 @@ ifeq ($(UNAME),Linux)
     PYTHON = $(shell python3 -c "import sys; print('%i.%i' % sys.version_info[:2])")
     ifneq (,$(findstring linuxbrew,$(HAVE_PYTHON3)))
       $(info Linux, python3, linuxbrew branch)
-      BOOST_PYTHON3_POSTFIX = 3
+      BOOST_PYTHON3_POSTFIX =3
     else ifneq (,$(findstring conda,$(HAVE_PYTHON3)))
       $(info Linux, python3, anaconda branch, will query Ubuntu python3 for boost_python)
-      BOOST_PYTHON3_POSTFIX = -py$(shell /usr/bin/python3 -c "import sys; print('%i%i' % sys.version_info[:2])")
+      BOOST_PYTHON3_POSTFIX =$(shell python3 -c "import sys; print('%i%i' % sys.version_info[:2])")
     else
       $(info Linux, python3, Ubuntu branch)
-      BOOST_PYTHON3_POSTFIX = -py$(shell python3 -c "import sys; print('%i%i' % sys.version_info[:2])")
+      BOOST_PYTHON3_POSTFIX =-py$(shell python3 -c "import sys; print('%i%i' % sys.version_info[:2])")
     endif
   else
     $(info Linux, python 2 branch)
@@ -41,7 +41,7 @@ ifeq ($(UNAME),Darwin)
   PKG   =pkg-config
   LIBS  =-framework OpenGL
   INC   =-I/System/Library/Frameworks/OpenGL.framework/Headers
-  BOOST_PYTHON3_POSTFIX = 3
+  BOOST_PYTHON3_POSTFIX =3
   BOOST_MT=-mt
   PYTHON = $(shell python3 -c "import sys; print('%i.%i' % sys.version_info[:2])")
   RPATH =

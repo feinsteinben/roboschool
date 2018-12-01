@@ -13,3 +13,4 @@ roboschool/robot-test-tool_d
 *.so
 *.swp
 __pycache__
+bullet3/
